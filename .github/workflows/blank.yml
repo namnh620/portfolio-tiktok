@@ -25,10 +25,13 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      # Runs a single command using the runners shell
-      - name: Install Markdown linter
-        run: sudo apt-get install -y markdownlint
-
-      # Runs a set of commands using the runners shell
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # Bạn có thể thay đổi phiên bản Node.js theo nhu cầu
+  
+      - name: Install markdownlint-cli
+        run: npm install -g markdownlint-cli
+  
       - name: Lint Markdown files
         run: markdownlint portfolio.md
